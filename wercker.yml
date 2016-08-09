@@ -1,8 +1,6 @@
 box: tzenderman/docker-nvm:latest
 build:
   steps:
-    - npm-install
-
     - script:
       name: node 4
       code: |
