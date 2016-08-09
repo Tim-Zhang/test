@@ -1,4 +1,4 @@
-box: etiv/nvm-base
+box: tzenderman/docker-nvm:latest
 build:
   steps:
     - npm-install
