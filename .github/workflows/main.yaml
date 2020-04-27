@@ -1,3 +1,4 @@
+name: Sanity check
 on: [pull_request]
 
 jobs:
