@@ -11,11 +11,11 @@ jobs:
       uses: Tim-Zhang/get-pr-commits@master
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: DCO Check
-      uses: Tim-Zhang/dco@master
-      with:
-        commits: ${{ steps.get-pr-commits.outputs.commits }}
     - name: Commit Body Check
       uses: Tim-Zhang/commit-body-check@master
+      with:
+        commits: ${{ steps.get-pr-commits.outputs.commits }}
+    - name: DCO Check
+      uses: Tim-Zhang/dco@master
       with:
         commits: ${{ steps.get-pr-commits.outputs.commits }}
