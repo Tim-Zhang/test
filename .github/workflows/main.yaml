@@ -1,21 +1,21 @@
-name: Sanity check
+name: Sanity Check
 on: [pull_request]
 
 jobs:
   sanity_check_job:
     runs-on: ubuntu-latest
-    name: Commits check
+    name: Commits Check
     steps:
     - name: Get PR Commits
       id: 'get-pr-commits'
       uses: Tim-Zhang/get-pr-commits@master
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: DCO Check
-      uses: Tim-Zhang/dco@master
-      with:
-        commits: ${{ steps.get-pr-commits.outputs.commits }}
     - name: Commit Body Check
       uses: Tim-Zhang/commit-body-check@master
+      with:
+        commits: ${{ steps.get-pr-commits.outputs.commits }}
+    - name: DCO Check
+      uses: Tim-Zhang/dco@master
       with:
         commits: ${{ steps.get-pr-commits.outputs.commits }}
