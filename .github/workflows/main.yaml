@@ -7,10 +7,11 @@ jobs:
     name: Sanity check
     steps:
     - name: Get PR Commits
+      id: 'get-pr-commits'
       uses: Tim-Zhang/get-pr-commits@master
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: DCO Check
       uses: Tim-Zhang/dco@master
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        commits: ${{ steps.get-pr-commits.outputs.commits }}
