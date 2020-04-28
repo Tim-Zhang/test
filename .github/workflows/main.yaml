@@ -2,10 +2,14 @@ name: Sanity check
 on: [pull_request]
 
 jobs:
-  dco_check_job:
+  sanity_check_job:
     runs-on: ubuntu-latest
-    name: DCO Check
+    name: Sanity check
     steps:
+    - name: Get PR Commits
+      uses: Tim-Zhang/get-pr-commits@master
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: DCO Check
       uses: Tim-Zhang/dco@master
       with:
