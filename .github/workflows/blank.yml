@@ -4,9 +4,7 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
@@ -15,6 +13,14 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-    - name: rust-clippy-check
-      uses: actions-rs/clippy-check@v1.0.5
+  clippy_check:
+    name: Clippy Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: rustup component add clippy
+      - uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --all-features
 
