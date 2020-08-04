@@ -36,6 +36,9 @@ jobs:
         uses: tim-actions/commit-message-checker-with-regex@master
         with:
           commits: ${{ steps.get-pr-commits.outputs.commits }}
-          # pattern: '^.+(Resolves|Fixes): \#[0-9]+$'
-          pattern: '/\s*Fixes\s*:?\s*(#\d+|github\.com\/kata-containers\/[a-z-.]*#\d+)/'
-          error: 'You need at least one "Resolves|Fixes: #<issue number>" line.'
+          pattern: '\\s*Fixes\\s*:?\\s*(#\\d+|github\.com\/kata-containers\/[a-z-.]*#\\d+)'
+          error: 'No "Fixes" found'
+
+      - name: Error Tips
+        if: ${{ failure() }}
+        run: echo "::debug::checkcommits failed. See the document below for help on formatting\ncommits for the project.\n\nhttps://github.com/kata-containers/community/blob/master/CONTRIBUTING.md#patch-format"
