@@ -41,4 +41,7 @@ jobs:
 
       - name: Error Tips
         if: ${{ failure() }}
-        run: echo "::debug::checkcommits failed. See the document below for help on formatting\ncommits for the project.\n\nhttps://github.com/kata-containers/community/blob/master/CONTRIBUTING.md#patch-format"
+        # run: echo "::debug::checkcommits failed. See the document below for help on formatting\ncommits for the project.\n\nhttps://github.com/kata-containers/community/blob/master/CONTRIBUTING.md#patch-format"
+        run: echo '::set-env name=SELECTED_COLOR::green'
+      - name: Get color
+        run: echo 'The selected color is' $SELECTED_COLOR
