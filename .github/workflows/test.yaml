@@ -19,8 +19,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check Subject Line Length
-        if: ${{ success() || failure() }}
-        uses: tim-actions/commit-message-checker-with-regex@b83d83f
+        uses: tim-actions/commit-message-checker-with-regex@v0.3.0
         with:
           commits: ${{ steps.get-pr-commits.outputs.commits }}
           pattern: '^.{0,75}(\n.*)*$'
@@ -32,7 +31,7 @@ jobs:
 
       - name: Check Body Line Length
         if: ${{ success() || failure() }}
-        uses: tim-actions/commit-message-checker-with-regex@b83d83f
+        uses: tim-actions/commit-message-checker-with-regex@v0.3.0
         with:
           commits: ${{ steps.get-pr-commits.outputs.commits }}
           pattern: '^.+(\n.{0,72})*$'
@@ -44,7 +43,7 @@ jobs:
 
       - name: Check Fixes
         if: ${{ success() || failure() }}
-        uses: tim-actions/commit-message-checker-with-regex@b83d83f
+        uses: tim-actions/commit-message-checker-with-regex@v0.3.0
         with:
           commits: ${{ steps.get-pr-commits.outputs.commits }}
           pattern: '\s*Fixes\s*:?\s*(#\d+|github\.com\/kata-containers\/[a-z-.]*#\d+)'
@@ -55,7 +54,8 @@ jobs:
             https://github.com/kata-containers/community/blob/master/CONTRIBUTING.md#patch-format
 
       - name: Check subsystem
-        uses: tim-actions/commit-message-checker-with-regex@b83d83f
+        if: ${{ success() || failure() }}
+        uses: tim-actions/commit-message-checker-with-regex@v0.3.0
         with:
           commits: ${{ steps.get-pr-commits.outputs.commits }}
           pattern: '^[\h]*([^:\h]+)[\h]*:'
