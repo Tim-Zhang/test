@@ -19,8 +19,7 @@ jobs:
       uses: tim-actions/get-pr-commits@feature-filter-out
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        filter_out_pattern: '^\s*revert'
-        filter_out_flags: 'i'
+        filter_out_pattern: '^Revert "'
     - name: Commit Body Check
       uses: tim-actions/commit-body-check@master
       with:
