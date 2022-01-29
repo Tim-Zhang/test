@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Get PR Commits
       id: 'get-pr-commits'
-      uses: tim-actions/get-pr-commits@feature-filter-out
+      uses: tim-actions/get-pr-commits@1.2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         filter_out_pattern: '^Revert "'
