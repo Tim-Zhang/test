@@ -1,0 +1,24 @@
+name: echo pr commits
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - labeled
+      - unlabeled
+
+jobs:
+  commits_check_job:
+    runs-on: ubuntu-latest
+    name: Commits Check
+    steps:
+    - name: Get PR Commits
+      id: 'get-pr-commits'
+      uses: tim-actions/get-pr-commits@v1.2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        filter_out_pattern: '^Revert "'
+    - name: echo
+      run: echo ${{ steps.get-pr-commits.outputs.commits }}
